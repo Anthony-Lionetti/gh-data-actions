@@ -1,0 +1,32 @@
+name: Deploying Website
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: npm ci
+      - name: Lint Code
+        run: npm run test
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Build website
+        run: npm run build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+        - name: Deploy
+          run: echo "Simulate deploy"
