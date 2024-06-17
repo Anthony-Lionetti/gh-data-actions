@@ -28,8 +28,8 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dist-files
-          path: dist
+          name: build-files
+          path: build
           # path: |
           #   dist
           #   package.json
@@ -40,7 +40,7 @@ jobs:
         - name: Get build artifacts
           uses: actions/download-artifact@v4
           with:
-            name: dist-files
+            name: build-files
         - name: Output Contents
           run: ls
         - name: Deploy
